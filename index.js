@@ -39,3 +39,12 @@ const str = `Smile  ${smile} you're on TV`;
 console.log(str);
 
 
+//Use Array Spreading to keep your arrays immutable
+
+const array = [1,2];
+array.push(3);//[1,2,3]
+
+const array1 = [1,2];
+const newArray = [...array1,3];
+
+console.log("array",newArray)
