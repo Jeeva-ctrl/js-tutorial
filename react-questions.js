@@ -427,5 +427,208 @@ Portal is a recommended way to render children into a DOM node that exists outsi
 ReactDOM.createPortal(child, container)
 The first argument is any render-able React child, such as an element, string, or fragment. The second argument is a DOM elemen
 =============================================================================================================
+What are the recommended ways for static type checking?
+Normally we use PropTypes library (React.PropTypes moved to a prop-types package since React v15.5) for type checking in the React applications. For large code bases, it is recommended to use static type checkers such as Flow or TypeScript, that perform type checking at compile time and provide auto-completion features.
+
+=============================================================================================================
+
+What is the use of react-dom package?
+The react-dom package provides DOM-specific methods that can be used at the top level of your app. Most of the components are not required to use this module. Some of the methods of this package are:
+
+render()
+hydrate()
+unmountComponentAtNode()
+findDOMNode()
+createPortal()
+
+
+
+=============================================================================================================
+
+What is the purpose of render method of react-dom?
+This method is used to render a React element into the DOM in the supplied container and return a reference to the component. If the React element was previously rendered into container, it will perform an update on it and only mutate the DOM as necessary to reflect the latest changes.
+
+ReactDOM.render(element, container[, callback])
+If the optional callback is provided, it will be executed after the component is rendered or updated.
+
+=============================================================================================================
+
+What is ReactDOMServer?
+The ReactDOMServer object enables you to render components to static markup (typically used on node server). This object is mainly used for server-side rendering (SSR). The following methods can be used in both the server and browser environments:
+
+renderToString()
+renderToStaticMarkup()
+For example, you generally run a Node-based web server like Express, Hapi, or Koa, and you call renderToString to render your root component to a string, which you then send as response.
+
+// using Express
+import { renderToString } from 'react-dom/server'
+import MyPage from './MyPage'
+
+app.get('/', (req, res) => {
+  res.write('<!DOCTYPE html><html><head><title>My Page</title></head><body>')
+  res.write('<div id="content">')
+  res.write(renderToString(<MyPage/>))
+  res.write('</div></body></html>')
+  res.end()
+})
+
+=============================================================================================================
+How to use innerHTML in React?
+The dangerouslySetInnerHTML attribute is React's replacement for using innerHTML in the browser DOM. Just like innerHTML, it is risky to use this attribute considering cross-site scripting (XSS) attacks. You just need to pass a __html object as key and HTML text as value.
+
+In this example MyComponent uses dangerouslySetInnerHTML attribute for setting HTML markup:
+
+function createMarkup() {
+  return { __html: 'First &middot; Second' }
+}
+
+function MyComponent() {
+  return <div dangerouslySetInnerHTML={createMarkup()} />
+}
+
+=============================================================================================================
+
+Why we need to be careful when spreading props on DOM elements?
+When we spread props we run into the risk of adding unknown HTML attributes, which is a bad practice. Instead we can use prop destructuring with ...rest operator, so it will add only required props.
+
+For example,
+
+const ComponentA = () =>
+  <ComponentB isDisplay={true} className={'componentStyle'} />
+
+const ComponentB = ({ isDisplay, ...domProps }) =>
+  <div {...domProps}>{'ComponentB'}</div>
+
+
+=============================================================================================================
+
+How you use decorators in React?
+You can decorate your class components, which is the same as passing the component into a function. Decorators are flexible and readable way of modifying component functionality.
+
+@setTitle('Profile')
+class Profile extends React.Component {
+    //....
+}
+
+
+  title is a string that will be set as a document title
+  WrappedComponent is what our decorator will receive when
+  put directly above a component class as seen in the example above
+
+// const setTitle = (title) => (WrappedComponent) => {
+//   return class extends React.Component {
+//     componentDidMount() {
+//       document.title = title
+//     }
+
+//     render() {
+//       return <WrappedComponent {...this.props} />
+//     }
+//   }
+// }
+// Note: Decorators are a feature that didn't make it into ES7, but are currently a stage 2 proposal.
+
+
+=============================================================================================================
+How do you memoize a component?
+There are memoize libraries available which can be used on function components.
+Since React v16.6.0, we have a React.memo. It provides a higher order component which memoizes component unless the props change. To use it, simply wrap the component using React.memo before you use it.
+
+  // const MemoComponent = React.memo(function MemoComponent(props) {
+  //    render using props 
+  // });
+  // OR
+  // export default React.memo(MyFunctionComponent);
+
+=============================================================================================================
+
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+=============================================================================================================
+
+
+
 
 */
