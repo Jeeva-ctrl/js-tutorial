@@ -174,4 +174,252 @@ Sometimes while developing React applications, there is a need to pass data from
 To pass data between such components, we pass props from a source component, and keep passing the prop to the next component in the hierarchy till we reach the deeply nested component.
 The disadvantage of using prop drilling is that the components that should otherwise be not aware of the data have access to the data.
 
+
+17. What are error boundaries?
+Introduced in the version 16 of React, Error boundaries provide a way for us to catch errors that occur in the render phase.
+
+What is an error boundary?
+Any component which uses one of the following lifecycle methods, is considered an error boundary.
+In what places can an error boundary detect an error?
+Render phase
+Inside a lifecycle method
+Inside the constructor
+
+getDerivedStateFromError function renders the fallback UI interface when the render method has an error.
+componentDidCatch logs the error information to an error tracking service.
+
+
+What is React?
+React is an open-source frontend JavaScript library which is used for building user interfaces especially for single page applications. It is used for handling view layer for web and mobile apps. React was created by Jordan Walke, a software engineer working for Facebook. React was first deployed on Facebook's News Feed in 2011 and on Instagram in 2012.
+
+
+What are Pure Components?
+React.PureComponent is exactly the same as React.Component except that it handles the shouldComponentUpdate() method for you. When props or state changes, PureComponent will do a shallow comparison on both props and state. Component on the other hand won't compare current props and state to next out of the box. Thus, the component will re-render by default whenever shouldComponentUpdate is called.
+
+Why should we not update the state directly?
+If you try to update the state directly then it won't re-render the component.
+
+//Wrong
+this.state.message = 'Hello world'
+Instead use setState() method. It schedules an update to a component's state object. When state changes, the component responds by re-rendering.
+
+//Correct
+this.setState({ message: 'Hello World' })
+Note: You can directly assign to the state object either in constructor or using latest javascript's class field declaration syntax.
+
+What is the purpose of callback function as an argument of setState()?
+
+The callback function is invoked when setState finished and the component gets rendered. Since setState() is asynchronous the callback function is used for any post action.
+
+Note: It is recommended to use lifecycle method rather than this callback function.
+
+setState({ name: 'John' }, () => console.log('The name has updated and component re-rendered'))
+
+How to bind methods or event handlers in JSX callbacks?
+
+
+There are 3 possible ways to achieve this:
+
+Binding in Constructor: In JavaScript classes, the methods are not bound by default. The same thing applies for React event handlers defined as class methods. Normally we bind them in constructor.
+
+class Component extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    // ...
+  }
+}
+Public class fields syntax: If you don't like to use bind approach then public class fields syntax can be used to correctly bind callbacks.
+
+handleClick = () => {
+  console.log('this is:', this)
+}
+<button onClick={this.handleClick}>
+  {'Click me'}
+</button>
+Arrow functions in callbacks: You can use arrow functions directly in the callbacks.
+
+<button onClick={(event) => this.handleClick(event)}>
+  {'Click me'}
+</button>
+Note: If the callback is passed as prop to child components, those components might do an extra re-rendering. In those cases, it is preferred to go with .bind() or public class fields syntax approach considering performance.
+
+=============================================================================================================
+
+What are synthetic events in React?
+SyntheticEvent is a cross-browser wrapper around the browser's native event. It's API is same as the browser's native event, including stopPropagation() and preventDefault(), except the events work identically across all browsers.
+
+=============================================================================================================
+What is the use of refs?
+
+The ref is used to return a reference to the element. They should be avoided in most cases, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
+=============================================================================================================
+How to create refs?
+
+There are two approaches
+
+This is a recently added approach. Refs are created using React.createRef() method and attached to React elements via the ref attribute. In order to use refs throughout the component, just assign the ref to the instance property within constructor.
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.myRef = React.createRef()
+  }
+  render() {
+    return <div ref={this.myRef} />
+  }
+}
+You can also use ref callbacks approach regardless of React version. For example, the search bar component's input element accessed as follows,
+
+class SearchBar extends Component {
+   constructor(props) {
+      super(props);
+      this.txtSearch = null;
+      this.state = { term: '' };
+      this.setInputSearchRef = e => {
+         this.txtSearch = e;
+      }
+   }
+   onInputChange(event) {
+      this.setState({ term: this.txtSearch.value });
+   }
+   render() {
+      return (
+         <input
+            value={this.state.term}
+            onChange={this.onInputChange.bind(this)}
+            ref={this.setInputSearchRef} />
+      );
+   }
+}
+You can also use refs in function components using closures. Note: You can also use inline ref callbacks even though it is not a recommended approach
+
+=============================================================================================================
+What are forward refs?
+Ref forwarding is a feature that lets some components take a ref they receive, and pass it further down to a child.
+
+const ButtonElement = React.forwardRef((props, ref) => (
+  <button ref={ref} className="CustomButton">
+    {props.children}
+  </button>
+));
+
+// Create ref to the DOM button:
+const ref = React.createRef();
+<ButtonElement ref={ref}>{'Forward Ref'}</ButtonElement>
+=============================================================================================================
+Which is preferred option with in callback refs and findDOMNode()?
+It is preferred to use callback refs over findDOMNode() API. Because findDOMNode() prevents certain improvements in React in the future.
+
+The legacy approach of using findDOMNode:
+
+class MyComponent extends Component {
+  componentDidMount() {
+    findDOMNode(this).scrollIntoView()
+  }
+
+  render() {
+    return <div />
+  }
+}
+The recommended approach is:
+
+class MyComponent extends Component {
+  constructor(props){
+    super(props);
+    this.node = createRef();
+  }
+  componentDidMount() {
+    this.node.current.scrollIntoView();
+  }
+
+  render() {
+    return <div ref={this.node} />
+  }
+}
+=============================================================================================================
+What is the difference between createElement and cloneElement?
+
+JSX elements will be transpiled to React.createElement() functions to create React elements which are going to be used for the object representation of UI. Whereas cloneElement is used to clone an element and pass it new props
+
+=============================================================================================================
+What is context?
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+For example, authenticated user, locale preference, UI theme need to be accessed in the application by many components.
+
+const {Provider, Consumer} = React.createContext(defaultValue)
+=============================================================================================================
+=============================================================================================================
+What is children prop?
+Children is a prop (this.props.children) that allow you to pass components as data to other components, just like any other prop you use. Component tree put between component's opening and closing tag will be passed to that component as children prop.
+
+There are a number of methods available in the React API to work with this prop. These include React.Children.map, React.Children.forEach, React.Children.count, React.Children.only, React.Children.toArray.
+
+A simple usage of children prop looks as below,
+
+const MyDiv = React.createClass({
+  render: function() {
+    return <div>{this.props.children}</div>
+  }
+})
+
+ReactDOM.render(
+  <MyDiv>
+    <span>{'Hello'}</span>
+    <span>{'World'}</span>
+  </MyDiv>,
+  node
+)
+
+=============================================================================================================
+What is the purpose of using super constructor with props argument?
+A child class constructor cannot make use of this reference until super() method has been called. The same applies for ES6 sub-classes as well. The main reason of passing props parameter to super() call is to access this.props in your child constructors.
+
+Passing props:
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props)
+
+    console.log(this.props) // prints { name: 'John', age: 42 }
+  }
+}
+Not passing props:
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super()
+
+    console.log(this.props) // prints undefined
+
+    // but props parameter is still available
+    console.log(props) // prints { name: 'John', age: 42 }
+  }
+
+  render() {
+    // no difference outside constructor
+    console.log(this.props) // prints { name: 'John', age: 42 }
+  }
+}
+The above code snippets reveals that this.props is different only within the constructor. It would be the same outside the constructor.
+=============================================================================================================
+What is reconciliation?
+When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM. This process is called reconciliation.
+=============================================================================================================
+
+Is lazy function supports named exports?
+No, currently React.lazy function supports default exports only. If you would like to import modules which are named exports, you can create an intermediate module that reexports it as the default. It also ensures that tree shaking keeps working and don’t pull unused components. Let's take a component file which exports multiple named components,
+
+=============================================================================================================
+What are portals in React?
+Portal is a recommended way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+
+ReactDOM.createPortal(child, container)
+The first argument is any render-able React child, such as an element, string, or fragment. The second argument is a DOM elemen
+=============================================================================================================
+
 */
