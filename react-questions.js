@@ -414,6 +414,12 @@ When a component's props or state change, React decides whether an actual DOM up
 Is lazy function supports named exports?
 No, currently React.lazy function supports default exports only. If you would like to import modules which are named exports, you can create an intermediate module that reexports it as the default. It also ensures that tree shaking keeps working and don’t pull unused components. Let's take a component file which exports multiple named components,
 
+export { SomeComponent as default } from "./MoreComponents.js";
+
+Now you can import the module using lazy function as below,
+import React, { lazy } from 'react';
+const SomeComponent = lazy(() => import("./IntermediateComponent.js"));
+
 =============================================================================================================
 What are portals in React?
 Portal is a recommended way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
