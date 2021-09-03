@@ -542,10 +542,26 @@ Since React v16.6.0, we have a React.memo. It provides a higher order component 
 
 =============================================================================================================
 
+The React.cloneElement() function returns a copy of a specified element.
+
+Additional props and children can be passed on in the function. You would use this function when a parent component wants to add or modify the prop(s) of its children.
+
+ let newProp = 'red';
+
+{React.Children.map(this.props.children, child => {
+          return React.cloneElement(child, { newProp }, null);
+        })}
 
 
 =============================================================================================================
 
+React.Children.map(children, function[(thisArg)])
+
+Invokes a function on every immediate child contained within children with this set to thisArg.
+
+If children is an array it will be traversed and the function will be called for each child in the array.
+
+If children is null or undefined, this method will return null or undefined rather than an array.
 
 =============================================================================================================
 
