@@ -540,6 +540,8 @@ Since React v16.6.0, we have a React.memo. It provides a higher order component 
   // OR
   // export default React.memo(MyFunctionComponent);
 
+  // React.useMemo(()=>{function that needs to be memoized },[dependencyArray])
+
 =============================================================================================================
 
 The React.cloneElement() function returns a copy of a specified element.
@@ -564,6 +566,16 @@ If children is an array it will be traversed and the function will be called for
 If children is null or undefined, this method will return null or undefined rather than an array.
 
 =============================================================================================================
+
+React has a powerful composition model, and we recommend using composition instead of inheritance to reuse code between components.
+
+function FancyBorder(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      {props.children}
+    </div>
+  );
+}
 
 
 =============================================================================================================
