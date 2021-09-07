@@ -84,6 +84,8 @@ var getName = obj.getName;
 var obj2 = {name:"akshay", getName };
 obj2.getName();
 
+===============================================================================================================================
+
 11. Explain call(), apply() and, bind() methods.
 
 call()
@@ -137,5 +139,71 @@ var detailsOfPerson1 = bikeDetails.displayDetails.bind(person1, "TS0122", "Bulle
         
 detailsOfPerson1();
 // Returns Vivek, bike details: TS0452, Thunderbird
+
+===============================================================================================================================
+
+12. What is currying in JavaScript?
+
+Currying is an advanced technique to transform a function of arguments n, to n functions of one or less arguments
+
+===============================================================================================================================
+
+13. Explain Scope and Scope Chain in javascript.
+
+Scope in JS, determines the accessibility of variables and functions at various parts in one’s code.
+
+In general terms, the scope will let us know at a given part of code, what are the variables and functions that we can or cannot access.
+
+There are three types of scopes in JS:
+
+Global Scope
+Local or Function Scope
+Block Scope
+===============================================================================================================================
+
+14. Explain Closures in JavaScript.
+
+Closures is an ability of a function to remember the variables and functions that are declared in its outer scope.
+
+var Person = function(pName){
+  var name = pName;
+
+  this.getName = function(){
+    return name;
+  }
+}
+
+var person = new Person("Neelesh");
+console.log(person.getName());
+========================================================================================================================
+
+15. What are object prototypes?
+
+All javascript objects inherit properties from a prototype.
+
+A prototype is a blueprint of an object. Prototype allows us to use properties and methods on an object even if the properties and methods do not exist on the current object.
+
+Let’s see prototypes help us use methods and properties:
+
+var arr = [];
+arr.push(2);
+
+console.log(arr); // Outputs [2]
+
+In the code above, as one can see, we have not defined any property or method called push on the array “arr” but the javascript engine does not throw an error.
+
+The reason being the use of prototypes. As we discussed before, Array objects inherit properties from the Array prototype.
+
+The javascript engine sees that the method push does not exist on the current array object and therefore, looks for the method push inside the Array prototype and it finds the method.
+
+Whenever the property or method is not found on the current object, the javascript engine will always try to look in its prototype and if it still does not exist, it looks inside the prototype's prototype and so on.
+===============================================================================================
+
+16. What are callbacks?
+A callback is a function that will be executed after another function gets executed.
+
+In javascript, functions are treated as first-class citizens, they can be used as an argument of another function, can be returned by another function and can be used as a property of an object.
+
+Functions that are used as an argument to another function are called callback functions.
 
 */
