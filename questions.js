@@ -17,9 +17,9 @@ This means that irrespective of where the variables and functions are declared, 
 
 Both are comparison operators. The difference between both the operators is that,“==” is used to compare values whereas, “ === “ is used to compare both value and types.
 
-3. Difference between “ == “ and “ === “ operators.
+4. Explain Implicit Type Coercion in javascript.
+Implicit type coercion in javascript is automatic conversion of value from one data type to another. It takes place when the operands of an expression are of different data types.
 
-Both are comparison operators. The difference between both the operators is that,“==” is used to compare values whereas, “ === “ is used to compare both value and types.
 
 5. Is javascript a statically typed or a dynamically typed language?
 
@@ -42,7 +42,100 @@ Syntax of IIFE :
   // Do something;
 })();
 
+7. Explain passed by value and passed by reference.
 
+In JavaScript, primitive data types are passed by value and non-primitive data types are passed by reference
+
+9. Explain Higher Order Functions in javascript.
+Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions.
+
+Higher order functions are a result of functions being first-class citizens in javascript.
+
+10. Explain “this” keyword.
+The “this” keyword refers to the object that the function is a property of.
+
+The value of “this” keyword will always depend on the object that is invoking the function.
+
+function doSomething() {
+  console.log(this);
+}
+        
+doSomething();
+
+var obj = {
+    name:  "vivek",
+    getName: function(){
+    console.log(this.name);
+  }
+}
+        
+obj.getName();
+
+var obj = {
+    name:  "vivek",
+    getName: function(){
+    console.log(this.name);
+  }
+        
+}
+        
+var getName = obj.getName;
+        
+var obj2 = {name:"akshay", getName };
+obj2.getName();
+
+11. Explain call(), apply() and, bind() methods.
+
+call()
+
+It’s a predefined method in javascript. This method invokes a method (function) by specifying the owner object.
+
+Example 1:
+
+function sayHello(){
+  return "Hello " + this.name;
+}
+        
+var obj = {name: "Sandy"};
+        sayHello.call(obj);
+        // Returns "Hello Sandy"
+
+          call() method allows an object to use the method (function) of another object.
+
+apply()
+
+The apply method is similar to the call() method. The only difference is that,
+
+call() method takes arguments separately whereas, apply() method takes arguments as an array.
+
+function saySomething(message){
+  return this.name + " is " + message;
+}
+        
+var person4 = {name:  "John"};
+        
+saySomething.apply(person4, ["awesome"]);
+
+bind()
+
+This method returns a new function, where the value of “this” skeyword will be bound to the owner object, which is provided as a parameter.
+
+Example with arguments:
+
+var bikeDetails = {
+    displayDetails: function(registrationNumber,brandName){
+    return this.name+ " , "+ "bike details: "+ registrationNumber + " , " + brandName;
+  }
+}
+        
+var person1 = {name:  "Vivek"};
+        
+var detailsOfPerson1 = bikeDetails.displayDetails.bind(person1, "TS0122", "Bullet");
+        
+// Binds the displayDetails function to the person1 object
+        
+        
+detailsOfPerson1();
+// Returns Vivek, bike details: TS0452, Thunderbird
 
 */
-
