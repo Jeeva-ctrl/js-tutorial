@@ -42,6 +42,10 @@ afterEach(cleanup);
 Use when you don't care what a value is, you just want to ensure a value is true in a boolean context. In JavaScript, there are six falsy values: false, 0, '', null, undefined, and NaN. Everything else is truthy.
 
 
+  ===========================================================================================================================
+Enzyme - 
+
+Shallow rendering is useful to constrain yourself to testing a component as a unit, and to ensure that your tests aren't indirectly asserting on behavior of child components.
 
 */
 
