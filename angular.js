@@ -178,6 +178,48 @@ export class AppComponent  {
 
 ==================================================================================================================================================
 
+10. How are observables different from promises?
+The first difference is that an Observable is lazy whereas a Promise is eager.
+
+	Promise- Emits a single value
+  Observable 	Emits multiple values over a period of time
+
+Promise -   Not Lazy
+
+Lazy. An observable is not called until we subscribe to the observable
+
+
+Cannot be cancelled
+
+Can be cancelled by using the unsubscribe() method
+
+ 	Observable provides operators like map, forEach, filter, reduce, retry, retryWhen etc.
+
+
+   Consider the following Observable:
+    
+      const observable = rxjs.Observable.create(observer => {
+        console.log('Text inside an observable');
+        observer.next('Hello world!');
+        observer.complete();
+      });
+
+      console.log('Before subscribing an Observable');
+
+      observable.subscribe((message)=> console.log(message));
+    
+  
+When you run the above Observable, you can see messages being displayed in the following order:
+
+Before subscribing an Observable
+Text inside an observable
+Hello world!
+
+As you can see, observables are lazy. Observable runs only when someone subscribes to them hence, the message “Before subscribing…” is displayed ahead of the message inside the observable.
+
+The next difference is that Observables can emit multiple values whereas Promises can emit only one value.
+
+The biggest feature of using observables is the use of operators. We can use multiple operators on an observable whereas, there is no such feature in a promise.
 
 
 ==================================================================================================================================================
