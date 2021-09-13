@@ -239,6 +239,31 @@ Any server-side rendered application loads faster since rendered pages are avail
 
 ==================================================================================================================================================
 
+Custom Directive :
+
+
+ng g directive blueBackground
+
+The following directive will be generated. Manipulate the directive to look like this:
+
+    
+      import { Directive, ElementRef } from '@angular/core';
+
+      @Directive({
+       selector: '[appBlueBackground]'
+      })
+      export class BlueBackgroundDirective {
+       constructor(el:ElementRef) {
+         el.nativeElement.style.backgroundColor = "blue";
+       }
+      }
+    
+  
+Now we can apply the above directive to any DOM element:
+
+    
+      <p appBlueBackground>Hello World!</p>
+    
 
 ==================================================================================================================================================
 
