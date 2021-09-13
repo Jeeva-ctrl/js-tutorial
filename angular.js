@@ -363,19 +363,61 @@ View and ViewModel are connected with data-binding (two-way data-binding in this
 
 ==================================================================================================================================================
 
+Question: What is Angular?
+
+Answer: Angular is a TypeScript-based open-source web application framework, developed and maintained by Google. It offers an easy and powerful way of building front end web-based applications.
+
+Angular integrates a range of features like declarative templates, dependency injection, end-to-end tooling, etc. that facilitates web application development.
 
 ==================================================================================================================================================
 
+ constructor(private router: Router) {} 
+  goHome() {
+    this.router.navigate(['']); 
+  }
+  goSearch() {
+    this.router.navigate(['search']); 
+  }
+
+
+
 ==================================================================================================================================================
 
 
 ==================================================================================================================================================
 
+ Following are the various advantages of using Angular:
+
+Ability to add a custom directive
+Exceptional community support
+Facilitates client and server communication
+Features strong features, such as Animation and Event Handlers
+Follows the MVC pattern architecture
+Offers support for static template and Angular template
+Support for two-way data-binding
+Supports dependency injection, RESTful services, and validations
+Disadvantages of using Angular are enumerated as follows:
+
+
+
+Complex SPAs can be inconvenient and laggy to use due to their size
+Dynamic applications do not always perform well
+Learning Angular requires a decent effort and time
 
 
 ==================================================================================================================================================
 
+Answer: There are essentially 9 building blocks of an Angular application. These are:
 
+Components – A component controls one or more views. Each view is some specific section of the screen. Every Angular application has at least one component, known as the root component. It is bootstrapped inside the main module, known as the root module. A component contains application logic defined inside a class. This class is responsible for interacting with the view via an API of properties and methods.
+Data Binding – The mechanism by which parts of a template coordinates with parts of a component is known as data binding. In order to let Angular know how to connect both sides (template and its component), the binding markup is added to the template HTML.
+Dependency Injection (DI) – Angular makes use of DI to provide required dependencies to new components. Typically, dependencies required by a component are services. A component’s constructor parameters tell Angular about the services that a component requires. So, a dependency injection offers a way to supply fully-formed dependencies required by a new instance of a class.
+Directives – The templates used by Angular are dynamic in nature. Directives are responsible for instructing Angular about how to transform the DOM when rendering a template. Actually, components are directives with a template. Other types of directives are attribute and structural directives.
+Metadata – In order to let Angular know how to process a class, metadata is attached to the class. For doing so decorators are used.
+Modules – Also known as NgModules, a module is an organized block of code with a specific set of capabilities. It has a specific application domain or a workflow. Like components, any Angular application has at least one module. This is known as the root module. Typically, an Angular application has several modules.
+Routing – An Angular router is responsible for interpreting a browser URL as an instruction to navigate to a client-generated view. The router is bound to links on a page to tell Angular to navigate the application view when a user clicks on it.
+Services – A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a class with a well-defined purpose.
+Template – Each component’s view is associated with its companion template. A template in Angular is a form of HTML tags that lets Angular know that how it is meant to render the component.
 
 ==================================================================================================================================================
 
