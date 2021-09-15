@@ -176,7 +176,15 @@ export class AppComponent  {
 
 
 
-==================================================================================================================================================
+=====================================================================================
+
+
+Observables provide support for passing messages between parts of your application. They are used frequently in Angular and are a technique for event handling, asynchronous programming, and handling multiple values
+
+The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of state changes. This pattern is similar (but not identical) to the publish/subscribe design pattern.
+
+
+========================================================================================================
 
 10. How are observables different from promises?
 The first difference is that an Observable is lazy whereas a Promise is eager.
