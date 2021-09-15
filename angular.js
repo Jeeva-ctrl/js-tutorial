@@ -422,7 +422,46 @@ Template – Each component’s view is associated with its companion template. 
 ==================================================================================================================================================
 
 
+An important aspect of web components is encapsulation — being able to keep the markup structure, style, and behavior hidden and separate from other code on the page so that different parts do not clash, and the code can be kept nice and clean.
+
+The Shadow DOM API is a key part of this, providing a way to attach a hidden separated DOM to an element. 
+
+Shadow DOM allows hidden DOM trees to be attached to elements in the regular DOM tree — this shadow DOM tree starts with a shadow root,
+ underneath which can be attached to any elements you want, in the same way as the normal DOM.
+
+ Shadow DOM serves for encapsulation. It allows a component to have its very own “shadow” DOM tree, that can’t be accidentally accessed from the main document, may have local style rules, and more.
+
+ Using the Shadow DOM, markup, styles, and behaviors are scoped to the element and do not clash with other nodes of the DOM
+
+
 ==================================================================================================================================================
+
+
+Let us start with ViewEncapsulation.None, in this option:
+
+There is no shadow DOM.
+Style is not scoped to the component.
+
+herefore, in ViewEncapsulation.None,
+ the style gets moved to the DOM's head section and is not scoped to the component. 
+ 
+ 
+ There is no Shadow DOM for the component and the component style can affect all nodes in the DOM.
+
+ Next, let us explore ViewEncapsulation.Native, in this option:
+
+Angular will create Shadow DOM for the component.
+
+Style is scoped to the component.
+
+As you run the application, you will find the h1 style has applied to both components, even though we only set the style only in AppComponent. This happened because in AppComponent we have set the encapsulation property to ViewEncapsulation.Native, and we are using AppChildComponnet as a child inside the template of AppComponent.
+
+ ViewEncapsulation.Emulated, in this option:
+
+Angular will not create a Shadow DOM for the component.
+Style will be scoped to the component.
+This is the default value for encapsulation.
+
 
 
 ==================================================================================================================================================
