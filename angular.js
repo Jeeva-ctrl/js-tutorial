@@ -609,7 +609,65 @@ A pure pipe is only called when Angular detects a change in the value or the par
 
 ==================================================================================================================================================
 
+What is a bootstrapping module?
+Every application has at least one Angular module, the root module that you bootstrap to launch the application is called as bootstrapping module. It is commonly known as AppModule. 
 
+==================================================================================================================================================
+What are observables?
+Observables are declarative which provide support for passing messages between publishers and subscribers in your application. They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
+
+==================================================================================================================================================
+
+
+What is HttpClient and its benefits?
+Most of the Front-end applications communicate with backend services over HTTP protocol using either XMLHttpRequest interface or the fetch() API. Angular provides a simplified client HTTP API known as HttpClient which is based on top of XMLHttpRequest interface. This client is avaialble from @angular/common/http package. You can import in your root module as below,
+
+import { HttpClientModule } from '@angular/common/http';
+The major advantages of HttpClient can be listed as below,
+
+Contains testability features
+Provides typed request and response objects
+Intercept request and response
+Supports Observalbe APIs
+Supports streamlined error handling
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+const userProfileUrl: string = 'assets/data/profile.json';
+
+@Injectable()
+export class UserProfileService {
+  constructor(private http: HttpClient) { }
+
+  getUserProfile() {
+    return this.http.get(this.userProfileUrl);
+  }
+}
+fetchUserProfile() {
+  this.userProfileService.getUserProfile()
+    .subscribe((data: User) => this.user = {
+        id: data['userId'],
+        name: data['firstName'],
+        city:  data['city']
+    });
+}
+==================================================================================================================================================
+
+How do you perform Error handling?
+
+If the request fails on the server or failed to reach the server due to network issues then HttpClient will return an error object instead of a successful reponse. In this case, you need to handle in the component by passing error object as a second callback to subscribe() method.
+
+Let's see how it can be handled in the component with an example,
+
+fetchUser() {
+  this.userService.getProfile()
+    .subscribe(
+      (data: User) => this.userProfile = { ...data }, // success path
+      error => this.error = error // error path
+    );
+}
+It is always a good idea to give the user some meaningful feedback instead of displaying the raw error object returned from HttpClient.
 
 
 
@@ -617,33 +675,15 @@ A pure pipe is only called when Angular detects a change in the value or the par
 ==================================================================================================================================================
 
 
-
-
-
-
-
-==================================================================================================================================================
-
-
-
-
+RxJS is a library for reactive programming using Observables, to make it easier to compose asynchronous or callback-based code
 
 
 ==================================================================================================================================================
-
-
-
-
-
-
-==================================================================================================================================================
-
-
-
-
-
-==================================================================================================================================================
-
+return this.http.get<Config>(this.configUrl)
+      .pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.handleError)
+      );
 
 ==================================================================================================================================================
 
