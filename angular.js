@@ -475,6 +475,210 @@ This is the default value for encapsulation.
 
 ==================================================================================================================================================
 
+What is a module?
+
+Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application. Lets take an example of app.module.ts root module declared with @NgModule decorator as below,
+
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent }  from './app.component';
+
+@NgModule ({
+   imports:      [ BrowserModule ],
+   declarations: [ AppComponent ],
+   bootstrap:    [ AppComponent ],
+   providers: []
+})
+export class AppModule { }
+The NgModule decorator has five important(among all) options
+
+The imports option is used to import other dependent modules. The BrowserModule is required by default for any web based angular application
+The declarations option is used to define components in the respective module
+The bootstrap option tells Angular which Component to bootstrap in the application
+The providers option is used to configure set of injectable objects that are available in the injector of this module.
+The entryComponents option is a set of components dynamically loaded into the view.
+
+==================================================================================================================================================
+Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application. The representation of lifecycle in pictorial representation as follows,
+
+The description of each lifecycle method is as below,
+
+ngOnChanges: When the value of a data bound property changes, then this method is called.
+ngOnInit: This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.
+ngDoCheck: This is for the detection and to act on changes that Angular can't or won't detect on its own.
+ngAfterContentInit: This is called in response after Angular projects external content into the component's view.
+ngAfterContentChecked: This is called in response after Angular checks the content projected into the component.
+ngAfterViewInit: This is called in response after Angular initializes the component's views and child views.
+ngAfterViewChecked: This is called in response after Angular checks the component's views and child views.
+ngOnDestroy: This is the cleanup phase just before Angular destroys the directive/component.
+
+
+==================================================================================================================================================
+Data Binding :
+
+
+
+From the Component to the DOM:
+
+Interpolation: {{ value }}: Adds the value of a property from the component
+
+<li>Name: {{ user.name }}</li>
+<li>Address: {{ user.address }}</li>
+
+Property binding: [property]=”value”: The value is passed from the component to the specified property or simple HTML attribute
+
+<input type="email" [value]="user.email">
+From the DOM to the Component: Event binding: (event)=”function”: When a specific DOM event happens (eg.: click, change, keyup), call the specified method in the component
+
+<button (click)="logout()"></button>
+Two-way binding: Two-way data binding: [(ngModel)]=”value”: Two-way data binding allows to have the data flow both ways. For example, in the below code snippet, both the email DOM input and component email property are in sync
+
+<input type="email" [(ngModel)]="user.email">
+==================================================================================================================================================
+What is metadata?
+Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators
+Class decorators, e.g. @Component and @NgModule
+
+Property decorators Used for properties inside classes, e.g. @Input and @Output
+
+Method decorators Used for methods inside classes, e.g. @HostListener
+
+Parameter decorators Used for parameters inside class constructors, e.g. @Inject, Optiona
+
+
+==================================================================================================================================================
+What is a service?
+A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
+
+==================================================================================================================================================
+What is the purpose of async pipe?
+The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
+
+Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
+
+@Component({
+  selector: 'async-observable-pipe',
+  template: `<div><code>observable|async</code>:
+       Time: {{ time | async }}</div>`
+})
+export class AsyncObservablePipeComponent {
+  time = new Observable(observer =>
+    setInterval(() => observer.next(new Date().toString()), 2000)
+  );
+}
+
+==================================================================================================================================================
+
+What is the purpose of ngFor directive?
+We use Angular ngFor directive in the template to display each item in the list. For example, here we iterate over list of users,
+<li *ngFor="let user of users">
+  {{ user }}
+</li>
+
+==================================================================================================================================================
+
+What happens if you use script tag inside template?
+Angular recognizes the value as unsafe and automatically sanitizes it, which removes the script tag but keeps safe content such as the text content of the script tag. This way it eliminates the risk of script injection attacks. If you still use it then it will be ignored and a warning appears in the browser console.
+
+==================================================================================================================================================
+What are pipes?
+A pipe takes in data as input and transforms it to a desired output. For example, let us take a pipe to transform a component's birthday property into a human-friendly date using date pipe.
+
+==================================================================================================================================================
+Give an example of custom pipe?
+You can create custom reusable pipes for the transformation of existing value. For example, let us create a custom pipe for finding file size based on an extension,
+  import { Pipe, PipeTransform } from '@angular/core';
+
+  @Pipe({name: 'customFileSizePipe'})
+  export class FileSizePipe implements PipeTransform {
+    transform(size: number, extension: string = 'MB'): string {
+      return (size / (1024 * 1024)).toFixed(2) + extension;
+    }
+  }
+Now you can use the above pipe in template expression as below,
+   template: `
+      <h2>Find the size of a file</h2>
+      <p>Size: {{288966 | customFileSizePipe: 'GB'}}</p>
+
+
+==================================================================================================================================================
+What is the difference between pure and impure pipe?
+A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe. For example, any changes to a primitive input value (String, Number, Boolean, Symbol) or a changed object reference (Date, Array, Function, Object). An impure pipe is called for every change detection cycle no matter whether the value or parameters changes. i.e, An impure pipe is called often, as often as every keystroke or mouse-move
+
+==================================================================================================================================================
+
+==================================================================================================================================================
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+==================================================================================================================================================
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
 
 ==================================================================================================================================================
 
@@ -484,16 +688,6 @@ This is the default value for encapsulation.
 
 
 
-==================================================================================================================================================
-
-
-==================================================================================================================================================
-
-
-==================================================================================================================================================
-
-
-==================================================================================================================================================
 
 
 
@@ -501,10 +695,33 @@ This is the default value for encapsulation.
 
 
 
-==================================================================================================================================================
+
+
 
 
 ==================================================================================================================================================
 
 
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+v
 */
