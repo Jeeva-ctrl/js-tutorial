@@ -77,45 +77,141 @@ Override Filter: It is used to exclude specific action methods or controllers fr
 
 
 ======================================================================================================================================================================
+How to handle errors in Web API?
+Web API generally provides greater flexibility in terms of handling errors. Exception handling is a technique that is used to handle run-time errors in application code. One can use HttpResponseException, HttpError, Exception filters, register exception filters, Exception handlers to handle errors. Exception filter can be used to identify unhandled exceptions on actions or controllers, exception handlers can be used to identify any type of unhandled exception application-wide, and HttpResponseException can be used when there is the possibility of an exception.
+
+======================================================================================================================================================================
+
+A message handler is a class that receives an HTTP request and returns an HTTP response. Message handlers derive from the abstract HttpMessageHandler class.
+
+Typically, a series of message handlers are chained together. The first handler receives an HTTP request, does some processing, and gives the request to the next handler. At some point, the response is created and goes back up the chain. This pattern is called a delegating handler.
+
+
+var config = new HttpSelfHostConfiguration("http://localhost");
+config.MessageHandlers.Add(new MessageHandler1());
+config.MessageHandlers.Add(new MessageHandler2());
+
+public class MethodOverrideHandler : DelegatingHandler      
+{
+    readonly string[] _methods = { "DELETE", "HEAD", "PUT" };
+    const string _header = "X-HTTP-Method-Override";
+
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        // Check for HTTP POST with the X-HTTP-Method-Override header.
+        if (request.Method == HttpMethod.Post && request.Headers.Contains(_header))
+        {
+            // Check if the header value is in our methods list.
+            var method = request.Headers.GetValues(_header).FirstOrDefault();
+            if (_methods.Contains(method, StringComparer.InvariantCultureIgnoreCase))
+            {
+                // Change the request method.
+                request.Method = new HttpMethod(method);
+            }
+        }
+        return base.SendAsync(request, cancellationToken);
+    }
+}
+
+public class CustomHeaderHandler : DelegatingHandler
+{
+    async protected override Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+        response.Headers.Add("X-Custom-Header", "This is my custom header.");
+        return response;
+    }
+}
+
 
 
 ======================================================================================================================================================================
 
+How to register an exception filter globally?
 
-
-======================================================================================================================================================================
-
-
-
+One can register exception filter globally using following code:
+GlobalConfiguration.Configuration.Filters.Add (new MyTestCustomerStore.NotImplExceptionFilterAttribute()
 
 ======================================================================================================================================================================
 
 
+22. What is the use of HttpResponseMessage?
+It is used to set response values such as header and status control. It simply allows us to work with HTTP protocol. It represents HTTP response messages that encapsulate data and status code. 
 
-
-======================================================================================================================================================================
-
-
-
-
-======================================================================================================================================================================
-
-
-
-
-
-======================================================================================================================================================================
-
-
-
+// GetEmployee action 
+public HttpResponseMessage GetEmployee(int id) 
+{     
+     Employee emp = EmployeeContext.Employees.Where(e => e.Id == id).FirstOrDefault(); 
+     if (emp != null) 
+      { 
+               return Request.CreateResponse<Employee>(HttpStatusCode.OK, emp);     
+      }     else     
+      { 
+               return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Employee Not Found"); 
+      } 
+}
 
 ======================================================================================================================================================================
 
 
+24. What do you mean by Caching and What are its types?
+Caching is basically a technique or process of storing data somewhere or in the cache for future requests. The cache is a temporary storage area. Caching keeps all frequently or recently accessed files or data in the cache memory and accesses them from the cache itself rather than actual address of data or files. The cache interface simply improves the storage mechanism for request/response object pairs that are being cached.
+
+Advantages of Caching:
+
+It is considered the best solution to ensure that data is served where it is needed to be served that too at a high level of efficiency which is best for both client and server.
+It delivers web objects faster to the end-user.
+It reduces load time on the website server.
+It leads to faster execution of any process.
+It decreases network costs.
+Types of Caching:
+There are basically three types of caching as given below:
+
+Page Caching
+Data Caching
+Fragment Caching
+
+======================================================================================================================================================================
+
+What are the main return types supported in ASP. Net Web API?
+It supports the following return types:
+
+HttpResponseMessage
+IHttpActionResult
+Void
+Other types such as string, int, etc. 
 
 
 ======================================================================================================================================================================
 
+What is ASP.NET Web API routing?
+Routing is the most important part of ASP.NET Web API. Routing is a way how Web API matches a URI to an action. It is basically a process that decides which action and controller should be called. The controller is basically a class that handles all HTTP requests. All public methods of controllers are basically known as action methods or just actions. Whenever a Web API framework receives any type of request, it routes that request to action. 
+
+There are basically two ways to implement routing in Web API as given below:
+Convention-based routing: Web API supports convention-based routing. In this type of routing, Web API uses route templates to select which controller and action method to execute. 
+
+Attribute-based routing: Web API 2 generally supports a new type of routing known as attribute routing. As the name suggests, it uses attributes to define routes. It is the ability to add routes to the route table via attributes.
+
+
+======================================================================================================================================================================
+
+What are Exception filters in ASP.NET Web API?
+Exception filter is generally used to handle all unhandled exceptions that are generated in web API. It implements IExceptionFilters interface. It is the easiest and most flexible to implement. This filter is executed whenever the controller method throws any unhandled exception at any stage that is not an HttpResponseExecption exception. 
+
+
+======================================================================================================================================================================
+ What is HttpConfiguration in Web API?
+It is considered as the main class that includes different properties with help of which one can override the default behavior of Web API. 
+
+Some properties are given below:
+
+DependencyResolver: It sets or gets a dependency resolver for dependency injection.
+Services: It gets web API services.
+ParameterBindingRules: It gets a collection of rules for how parameters should be bound.
+MessageHandlers:  It sets or gets message handlers.
+Formatters: It sets or gets media-type formatters
 ======================================================================================================================================================================
 
 
