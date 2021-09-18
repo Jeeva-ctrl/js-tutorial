@@ -1,4 +1,8 @@
 /*
+
+.Net Core - 
+
+
 Global Filters are those that are automatically applied to very action method of every controller
 
 Register it Globally using the MvcOptions.Filters.AddService method.
