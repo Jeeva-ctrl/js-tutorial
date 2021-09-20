@@ -214,13 +214,39 @@ MessageHandlers:  It sets or gets message handlers.
 Formatters: It sets or gets media-type formatters
 ======================================================================================================================================================================
 
+HttpResponseException
+What happens if a Web API controller throws an uncaught exception? By default, most exceptions are translated into an HTTP response with status code 500, Internal Server Error.
 
+The HttpResponseException type is a special case. This exception returns any HTTP status code that you specify in the exception constructor. For example, the following method returns 404, Not Found, if the id parameter is not valid.
+
+if (item == null)
+    {
+        throw new HttpResponseException(HttpStatusCode.NotFound);
+    }
 
 ======================================================================================================================================================================
 
 
+Exception Filters
+You can customize how Web API handles exceptions by writing an exception filter. An exception filter is executed when a controller method throws any unhandled exception that is not an HttpResponseException exception. The HttpResponseException type is a special case, because it is designed specifically for returning an HTTP response.
 
+Exception filters implement the System.Web.Http.Filters.IExceptionFilter interface. The simplest way to write an exception filter is to derive from the System.Web.Http.Filters.ExceptionFilterAttribute class and override the OnException method.
 
+public class NotImplExceptionFilterAttribute : ExceptionFilterAttribute 
+    {
+        public override void OnException(HttpActionExecutedContext context)
+        {
+            if (context.Exception is NotImplementedException)
+            {
+                context.Response = new HttpResponseMessage(HttpStatusCode.NotImplemented);
+            }
+        }
+    }
+
+  GlobalConfiguration.Configuration.Filters.Add(
+    new ProductStore.NotImplExceptionFilterAttribute());
+    
+    
 ======================================================================================================================================================================
 
 
