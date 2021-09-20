@@ -248,9 +248,14 @@ public class NotImplExceptionFilterAttribute : ExceptionFilterAttribute
     
     
 ======================================================================================================================================================================
+HttpError
+The HttpError object provides a consistent way to return error information in the response body. The following example shows how to return HTTP status code 404 (Not Found) with an HttpError in the response body.
 
-
-
+ if (item == null)
+    {
+        var message = string.Format("Product with id = {0} not found", id);
+        return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+    }
 
 ======================================================================================================================================================================
 
