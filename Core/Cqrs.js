@@ -7,6 +7,8 @@ Implementing CQRS in your application can maximize its performance, scalability,
 
 The flexibility created by migrating to CQRS allows a system to better evolve over time and prevents update commands from causing merge conflicts at the domain level.
 
+Large Project with individual scalability is required
+
 Disadvantages of the CQRS Pattern
 
 It adds unnecessary complexity if applications have simple CRUD operations, which can be achieved by traditional architectural styles.
