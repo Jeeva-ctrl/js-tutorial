@@ -98,7 +98,11 @@ DoS attacks accomplish this by flooding the target with traffic, or sending it i
 In both instances, the DoS attack deprives legitimate users (i.e. employees, members, or account holders) of the service or resource they expected.
 
 ==============================================================================================================================
+Azure Active Directory (Azure AD) is Microsoft’s cloud-based identity and access management service, which helps your employees sign in and access resources in:
 
+External resources, such as Microsoft 365, the Azure portal, and thousands of other SaaS applications.
+
+Internal resources, such as apps on your corporate network and intranet, along with any cloud apps developed by your own organization. 
 ==============================================================================================================================
 
 
