@@ -29,4 +29,151 @@ This is the unit that you pay for when you use App Service. You pay for the App 
 You could, for instance, run 10 Web Apps in the same App Service Plan. Obviously, if you run 10 applications in one App Service plan, they all share the same compute resources.
 
 So, you have to keep in mind that all of these applications can run within the limits of the CPU, memory and disk space of your App Service Plan.
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+Azure Sentinel is a cloud-native security information and event manager (SIEM) platform that uses built-in AI to help analyse large volumes of data across an enterprise—fast. 
+
+Azure Sentinel aggregates data from all sources, including users, applications, servers and devices running on-premises or in any cloud, letting you reason over millions of records in a few seconds. 
+
+It includes built-in connectors for easy onboarding of popular security solutions. Collect data from any source with support for open standard formats like CEF and Syslog.
+
+==============================================================================================================================
+
+Defense in Depth (DiD) is an approach to cybersecurity in which a series of defensive mechanisms are layered in order to protect valuable data and information. 
+
+If one mechanism fails, another steps up immediately to thwart an attack. This multi-layered approach with intentional redundancies increases the security of a system as a whole and addresses many different attack vectors
+
+Data
+Stored in a database
+Stored on disk inside virtual machines
+Stored on a SaaS application such as Office 365
+Stored in cloud storage
+
+Application
+Ensure applications are secure and free of vulnerabilities.
+Store sensitive application secrets in a secure storage medium.
+Make security a design requirement for all application development.
+
+Compute
+Secure access to virtual machines.
+Implement endpoint protection and keep systems patched and current.
+
+Networking
+Limit communication between resources.
+Deny by default.
+Restrict inbound internet access and limit outbound, where appropriate.
+Implement secure connectivity to on-premises networks.
+
+Perimeter
+Use distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for end users.
+Use perimeter firewalls to identify and alert on malicious attacks against your network.
+
+Identity and access
+Control access to infrastructure and change control.
+Use single sign-on and multi-factor authentication.
+Audit events and changes.
+
+
+Physical security
+Physical building security and controlling access to computing hardware within the data center is the first line of defense
+
+==============================================================================================================================
+You can use an Azure network security group to filter network traffic to and from Azure resources in an Azure virtual network. 
+
+A network security group contains security rules that allow or deny inbound network traffic to, or outbound network traffic from, several types of Azure resources.
+
+For each rule, you can specify source and destination, port, and protocol.
+
+When an NSG is associated with a subnet, the ACL rules apply to all Virtual Machine instances of that subnet
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
+==============================================================================================================================
+
+
 */
