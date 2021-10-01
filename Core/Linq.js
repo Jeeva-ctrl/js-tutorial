@@ -45,16 +45,45 @@ Queryable is beneficial for LINQ to SQL queries.
 
   ========================================================================================================================
 
+There are two basic ways to write a LINQ query to IEnumerable collection or IQueryable data sources.
 
+Query Syntax or Query Expression Syntax
+Method Syntax or Method Extension Syntax or Fluen
 
   ========================================================================================================================
+// Student collection
+IList<Student> studentList = new List<Student>() { 
+        new Student() { StudentID = 1, StudentName = "John", Age = 13} ,
+        new Student() { StudentID = 2, StudentName = "Moin",  Age = 21 } ,
+        new Student() { StudentID = 3, StudentName = "Bill",  Age = 18 } ,
+        new Student() { StudentID = 4, StudentName = "Ram" , Age = 20} ,
+        new Student() { StudentID = 5, StudentName = "Ron" , Age = 15 } 
+    };
 
+// LINQ Query Syntax to find out teenager students
+var teenAgerStudent = from s in studentList
+                      where s.Age > 12 && s.Age < 20
+                      select s;
 
   ========================================================================================================================
+Method syntax (also known as fluent syntax) uses extension methods included in the Enumerable or Queryable static class, similar to how you would call the extension method of any class.
+
+The compiler converts query syntax into method syntax at compile time.
 
 
     ========================================================================================================================
-  
+  // Student collection
+IList<Student> studentList = new List<Student>() { 
+        new Student() { StudentID = 1, StudentName = "John", Age = 13} ,
+        new Student() { StudentID = 2, StudentName = "Moin",  Age = 21 } ,
+        new Student() { StudentID = 3, StudentName = "Bill",  Age = 18 } ,
+        new Student() { StudentID = 4, StudentName = "Ram" , Age = 20} ,
+        new Student() { StudentID = 5, StudentName = "Ron" , Age = 15 } 
+    };
+
+// LINQ Method Syntax to find out teenager students
+var teenAgerStudents = studentList.Where(s => s.Age > 12 && s.Age < 20)
+                                  .ToList<Student>();
   ========================================================================================================================
 
 
