@@ -32,7 +32,24 @@ Yes, an Abstract class always has a constructor.
 
 ==================================================================================================================
 
+What is Enum in C#?
+ 
+C# enum is a value type with a set of related named constants often referred as an enumerator list. The C# enum keyword is used to declare an enumeration. It is a primitive data type, which is user-defined
 
+Enums are enumerated data type in C#.
+
+Enums are not for end-users, they are meant for developers.
+
+Enums are strongly typed constants. They are strongly typed, i.e., an enum of one type may not be implicitly assigned to an enum of another type even though the underlying value of their members are the same.
+
+Enumerations (enums) make your code more readable and understandable.
+
+enum values are fixed. enum can be displayed as a string and processed as an integer.
+
+The default type is int, and the approved types are byte, sbyte, short, ushort, uint, long, and ulong.
+
+Every enum type automatically derives from System.Enum and thus we can use System.Enum methods on enums.
+Enums are value types and are created on the stack and not on the heap
 
 ==================================================================================================================
 
