@@ -149,3 +149,27 @@ console.log(myArray.reduce(reducer)); // 100
   console.log(user.dataset.name); // "John Doe" console.log(user.dataset.age);
   // "29" console.log(user.dataset.something); // "Some Data"
 </script>;
+
+/*
+You can use several HTTP methods in an HTTP request. Each method sends data in the request in a different manner...
+
+For example, the GET method uses the query string of the RequestURI to pass parameter and value pairs. Other methods use the HTTP message body to send data in the request.
+
+Stateless - Each data request and response pair is treated as completely independent from prior and future requests. These states are “in transition” when one or more requests are outstanding.
+
+RequestHeaders 
+
+accept: application/json
+Authorization: Bearer null
+
+Response Header
+
+accept: application/json
+
+In responses, a Content-Type header tells the client what the content type of the returned content actually is
+
+
+
+
+
+*/
