@@ -282,31 +282,68 @@ Then it converts the HttpResponseMessage into an HTTP response message
 
 ======================================================================================================================================================================
 
+ASP.NET Hosting
 
+You can host Web API on ASP.NET server and IIS server. For more details kindly go through the following details how to host Web API in IIS:  WebApi Hosting in Internet Information Server (IIS 7.5).
+
+
+
+======================================================================================================================================================================
+
+Self-Hosting using OWIN
+
+In Self Hosting you can use OWIN to Self-Host ASP.NET Web API, The HttpServer pipeline starts at the HttpSelfHostServer which is an implementation of HttpServer and directly listens to HTTP requests.
+
+
+======================================================================================================================================================================
+
+WebApi HttpRequest & HttpResponse Message format
+
+The HTTP request message is first converted to an HttpRequestMessage object, which provides strongly typed access to the HTTP message. There are two types of Http messages HttpRequest and HttpResponse. Each of this has their own format before sending it to respective server and received response from server.
+
+The structure of HttpRequestMessage format is as follows with a pictorial representation.
+<request-line>  
+<general-headers>  
+<request-headers>  
+<entity-headers>  
+<empty-line>  
+[<message-body>]  
+[<message-trailers>]  
+]
+
+The structure of HttpResponseMessage format is as follows with a pictorial representation.
+<Status-line>  
+<general-headers>  
+<response-headers>  
+<entity-headers>  
+<empty-line>  
+[<message-body>]  
+
+======================================================================================================================================================================
+
+To create a custom message handler, derive from the DelegatingHandler class. 
+
+You can add multiple message handlers. Message handlers can be global or assigned to a specific route and called as per-route message handler. 
+Per-route message handler is invoked only when the request matches that route. Per-route message handlers are configured in the routing table. A message handler can create the response directly, skipping the rest of the pipeline.
+
+config.MessageHandlers.Add(new CustomHandler_One());
+======================================================================================================================================================================
+Model Binders, Value Providers
 
 
 
 ======================================================================================================================================================================
 
 
+Action Filters
 
+Custom filters and attributes are an excellent way to inject extra processing logic into the MVC request response pipeline. At some level programmer would be happy to inject some pre-processing or post-processing logic for actions and controllers. In that case we use filters.
+ 
+This filter will be called before and after the action starts executing and after the action has executed. It comes under namespace using System.Web.Http.Filters;
 
-======================================================================================================================================================================
+OnActionExecuting occurs just before the action method is called.
 
-
-
-
-======================================================================================================================================================================
-
-
-======================================================================================================================================================================
-
-
-
-======================================================================================================================================================================
-
-
-
+OnActionExecuted occurs after the action method is called, but before the result is executed (before the view is rendered).
 
 ======================================================================================================================================================================
 
