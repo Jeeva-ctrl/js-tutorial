@@ -17,7 +17,12 @@ In Hashtable, you can store key/value pairs of the same type or of the different
 
 
 ==============================================================================================================================================================
+The PE file you are talking about is the "Portable Executable" format.
 
+ Almost every EXE and DLL on the Windows platform is formatted in PE format.
+ 
+  To answer your question, it's a general format and every assembly generated after compilation of your project will be a PE file
+  
 ==============================================================================================================================================================
 
 
