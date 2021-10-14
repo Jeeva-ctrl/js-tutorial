@@ -86,6 +86,11 @@ The URL Builder has six fields, but you generally need to use only Campaign Sour
 
 ========================================================================================================================================
 
+Through which report can you determine the percent of your site traffic that has visited previously?
+
+
+New Vs Returning Report 
+
 
 ========================================================================================================================================
 
