@@ -78,10 +78,11 @@ The pages through which visitors entered your site are called landing pages.
 
 ========================================================================================================================================
 
-
+Through which report can you determine which browsers may have had problems with your website? - Browser and OS report
 
 ========================================================================================================================================
 
+The URL Builder has six fields, but you generally need to use only Campaign Source, Campaign Medium, and Campaign Name
 
 ========================================================================================================================================
 
