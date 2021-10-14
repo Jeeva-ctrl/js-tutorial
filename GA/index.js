@@ -42,15 +42,39 @@ By adding campaign parameters to your URLs, you can identify the campaigns that 
 
 ========================================================================================================================================
 
+Acquisition-related metrics answer questions such as: how did people get here, and who are they?
+
+Users → the visitors who initiated at least one session in the date range of interest
+
+New Users → the number of first-time users (as opposed to returning ones) in the date range
+
+Sessions → Google Analytics starts recording a session whenever someone visits a website and terminates it after 30 minutes of inactivity. GA keeps track of all user interactions that take place within that specified time frame.
+
 
 
 ========================================================================================================================================
 
+Behavior-related metrics answer questions such as: how did people behave once they got here?
+
+Bounce Rate→ the percentage of all single-page sessions where the Analytics server did not record any interactions (e.g. where the visitor landed and left without clicking on any links and navigating to a second page)
+
+Exit Rate (shown as '% Exit') → the number of exits / number of pageviews for the specified page
+
+Pages/Session → the average number of pages viewed within a single session
+
+Session Duration → the average length of a session
+========================================================================================================================================
+Conversion-related metrics answer questions such as: how many people did convert, and how much revenue did we get?
+
+Ecommerce Conversion Rate → the percentage of sessions that included an ecommerce transaction
+
+Transactions → the number of transactions (i.e. completed purchases) that took place
+
+Revenue → the amount of money generated from the transactions
 
 ========================================================================================================================================
 
-
-========================================================================================================================================
+The pages through which visitors entered your site are called landing pages.
 
 ========================================================================================================================================
 
