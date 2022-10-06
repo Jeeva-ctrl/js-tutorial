@@ -29,7 +29,9 @@ https://pvs-studio.com/en/blog/posts/csharp/0808/
 
 Iteratoer keyword indicate compiler that the method is Iteratoer
 
-The yield keyword is used to build generators of element sequences. These generators do not create collections. Instead, the sequence stores the current state - and moves on to the next state on command. Thus, memory requirements are minimal and do not depend on the number of elements. It's not hard to guess that generated sequences can be infinite.
+The yield keyword is used to build generators of element sequences. These generators do not create collections. Instead, the sequence stores the current state
+ - and moves on to the next state on command. Thus, memory requirements are minimal and do not depend on the number of elements.
+ It's not hard to guess that generated sequences can be infinite.
 
 To begin, create a method that generates the sequence you need. The only limitation here is that the method must return one of the following types:
 
@@ -61,7 +63,11 @@ Local variables, fields, and properties
 Local variables initialized inside yield methods, retain their values between MoveNext method calls
 
 yield break
-Aside from yield return, C# offers you another statement - yield break. It allows you to stop sequence generation - that is, exit the generator for good. If the MoveNext method executes yield break, the return is false. No changes to fields or properties can make the generator work again. However, if the method that uses yield is called for the second time - it's a completely different story, because a new object generator is created. That generator would not have encountered yield break.
+Aside from yield return, C# offers you another statement - yield break. It allows you to stop sequence generation -
+ that is, exit the generator for good. 
+ If the MoveNext method executes yield break, the return is false. No changes to fields or properties can make the generator work again.
+ However, if the method that uses yield is called for the second time - it's a completely different story, because a new object generator is created. 
+That generator would not have encountered yield break.
 
 ==============================================================================================================================================================
 
